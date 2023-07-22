@@ -1,15 +1,13 @@
 import Image from "next/image";
 import { Button } from "@/components/ui/button";
+import { UserButton } from "@clerk/nextjs";
 
 const DashboardPage = () => {
   return (
-    <>
-      <p className="text-6xl text-green-500">Dashboard page </p>
-      (Protected)
-      <Button variant={"destructive"} size={"lg"}>
-        Click Me Plx
-      </Button>
-    </>
+    <div>
+      <p>Dashboard Page</p>
+      <UserButton afterSignOutUrl="/"/>
+    </div>
   );
 };
 
