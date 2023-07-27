@@ -4,9 +4,6 @@ import Image from "next/image";
 import Link from "next/link";
 import { Montserrat } from "next/font/google";
 import { usePathname } from "next/navigation"
-
-
-import { cn } from "@/lib/utils";
 import {
   LayoutDashboard,
   MessageSquare,
@@ -16,6 +13,10 @@ import {
   Code,
   Settings,
 } from "lucide-react";
+
+
+import { cn } from "@/lib/utils";
+import { FreeCounter } from "@/components/free-counter";
 
 const monsterrat = Montserrat({
   weight: "600",
@@ -66,7 +67,13 @@ const routes = [
   },
 ];
 
-const Sidebar = () => {
+interface SidebarProps {
+  apiLimitCount: number;
+}
+
+const Sidebar = ({
+  apiLimitCount = 0
+}: SidebarProps ) => {
 
     const pathName = usePathname();
 
@@ -98,6 +105,9 @@ const Sidebar = () => {
           ))}
         </div>
       </div>
+      <FreeCounter
+        apiLimitCount = {apiLimitCount} 
+      />
     </div>
   );
 };
