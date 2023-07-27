@@ -26,10 +26,12 @@ import { UserAvatar } from "@/components/user-avatar";
 import { BotAvatar } from "@/components/bot-avatar";
 import { cn } from "@/lib/utils";
 import { Card, CardFooter } from "@/components/ui/card";
+import { useProModal } from "@/hooks/use-pro-modal";
 
 import { amountOptions, formSchema, resoultionOptions } from "./constants";
 
 const ImagePage = () => {
+  const proModal = useProModal();
   const router = useRouter();
   const [images, SetImages] = useState<string[]>([]);
 
@@ -57,6 +59,10 @@ const ImagePage = () => {
       form.reset();
     } catch (error: any) {
       console.log(error);
+      if(error?.response?.status === 403)
+      {
+        proModal.onOpen();
+      }
     } finally {
       router.refresh();
     }
